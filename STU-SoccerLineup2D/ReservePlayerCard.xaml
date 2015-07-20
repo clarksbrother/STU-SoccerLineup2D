@@ -1,0 +1,80 @@
+﻿<UserControl x:Class="STU_SoccerLineup2D.ReservePlayerCard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="107" d:DesignWidth="326">
+
+    <Canvas x:Name="reservePlayerCardCanvas" Height="107" Width="326">
+        <Rectangle x:Name="darkBG" Height="107" Width="326">
+            <Rectangle.Fill>
+                <SolidColorBrush Color="#9C9B9B"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle x:Name="swatch" Height="107" Width="326">
+            <Rectangle.Fill>
+                <ImageBrush AlignmentX="Left" AlignmentY="Top" x:Name="swatchBrush" ImageSource="Images/Sample/GREENBAY_PACKERS_SWATCH.PNG" Stretch="None">
+                    <ImageBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleY="1000" ScaleX="1000"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform Y="-100"/>
+                        </TransformGroup>
+                    </ImageBrush.RelativeTransform>
+                </ImageBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle x:Name="swatchOverlay" Height="107" Width="326" d:IsHidden="True">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#88000000" Offset="1"/>
+                    <GradientStop Color="#00000000"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Canvas x:Name="headshot" Height="107" Width="326" Canvas.Left="0" Canvas.Top="0" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Canvas.Background>
+                <ImageBrush x:Name="headshotBrush" ImageSource="Images/Sample/headshot.png" Stretch="Uniform">
+                    <ImageBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="1.9" ScaleY="1.9"/>
+                            <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                            <RotateTransform CenterY="0.5" CenterX="0.5"/>
+                            <TranslateTransform Y="0.38" X="-0.36"/>
+                        </TransformGroup>
+                    </ImageBrush.RelativeTransform>
+                </ImageBrush>
+            </Canvas.Background>
+        </Canvas>
+        <Viewbox x:Name="firstNameShadowViewbox" HorizontalAlignment="Left" StretchDirection="DownOnly" Stretch="Fill" Height="56" Canvas.Left="88.468" Canvas.Top="13.371" Width="187.532" d:IsHidden="True">
+            <TextBlock x:Name="firstNameShadow" TextWrapping="Wrap" Text="First Name" FontFamily="/STU-SoccerLineup2D;component/Fonts/#Touchscreen  Swiss721 BoldCondensed" FontSize="40" Foreground="Black"/>
+        </Viewbox>
+        <Viewbox x:Name="firstNameViewbox" HorizontalAlignment="Left" StretchDirection="DownOnly" Stretch="Fill" Height="56" Canvas.Left="88.468" Canvas.Top="14.371" Width="187.532" d:IsHidden="True">
+            <TextBlock x:Name="firstNameText" TextWrapping="Wrap" Text="First Name" FontFamily="/STU-SoccerLineup2D;component/Fonts/#Touchscreen  Swiss721 BoldCondensed" FontSize="40">
+                <TextBlock.Foreground>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFE3E1E2" Offset="1"/>
+                        <GradientStop Color="White"/>
+                    </LinearGradientBrush>
+                </TextBlock.Foreground>
+            </TextBlock>
+        </Viewbox>
+        <Viewbox x:Name="lastNameShadowViewbox" HorizontalAlignment="Left" StretchDirection="DownOnly" Stretch="Fill" Height="56" Canvas.Left="88.468" Canvas.Top="51" Width="187.532" d:IsHidden="True">
+            <TextBlock x:Name="lastNameShadow" TextWrapping="Wrap" Text="LAST NAME" FontFamily="/STU-SoccerLineup2D;component/Fonts/#Touchscreen  Swiss721 BoldCondensed" FontSize="40" Foreground="Black"/>
+        </Viewbox>
+        <Viewbox x:Name="lastNameViewbox" HorizontalAlignment="Left" StretchDirection="DownOnly" Stretch="Fill" Height="56" Canvas.Left="88.468" Canvas.Top="52" Width="187.532" d:IsHidden="True">
+            <TextBlock x:Name="lastNameText" TextWrapping="Wrap" Text="LAST NAME" FontFamily="/STU-SoccerLineup2D;component/Fonts/#Touchscreen  Swiss721 BoldCondensed" FontSize="40">
+                <TextBlock.Foreground>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFE3E1E2" Offset="1"/>
+                        <GradientStop Color="White"/>
+                    </LinearGradientBrush>
+                </TextBlock.Foreground>
+            </TextBlock>
+        </Viewbox>
+        
+    </Canvas>
+
+</UserControl>

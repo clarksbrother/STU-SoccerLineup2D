@@ -1,0 +1,113 @@
+﻿<Window
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:local="clr-namespace:STU_SoccerLineup2D"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+    xmlns:VideoPlayerWPF="clr-namespace:VideoPlayerWPF;assembly=VideoPlayerWPF"
+    xmlns:TelestrationWPF="clr-namespace:TelestrationWPF;assembly=TelestrationWPF"
+	xmlns:DirectShowControls="clr-namespace:WPFMediaKit.DirectShow.Controls;assembly=WPFMediaKit"
+    x:Class="STU_SoccerLineup2D.MainWindow"
+	x:Name="Window"
+	Title="MainWindow"
+	Width="1920" Height="1080" WindowStyle="None" Loaded="Window_Loaded" Background="{x:Null}" Foreground="{x:Null}">
+    <Canvas x:Name="visibleCanvas" Width="1920" Height="1080" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+        <Canvas.Background>
+            <ImageBrush ImageSource="Images/Main/background.jpg"/>
+        </Canvas.Background>
+        <Canvas x:Name="fieldPlayersRotate" Height="11040" Canvas.Left="-3044" Canvas.Top="-4960" Width="8000" RenderTransformOrigin="0.5,0.5">
+        	<Canvas x:Name="fieldPlayers" Height="11040" Canvas.Left="0" Canvas.Top="0" Width="8000" RenderTransformOrigin="0.5,0.5">
+        		<Canvas x:Name="field" Height="11040" Canvas.Left="0" Canvas.Top="0" Width="8000" RenderTransformOrigin="0,0">
+        			<Rectangle x:Name="grass" Height="31040" Canvas.Left="-10000" Stroke="Black" Width="28000" Canvas.Top="-10000" StrokeThickness="0">
+        				<Rectangle.Fill>
+        					<ImageBrush ImageSource="Images/SoccerFieldGrass.png" Stretch="None" TileMode="Tile" Viewport="0, 0, 2251, 1598" ViewportUnits="Absolute"/>
+        				</Rectangle.Fill>
+        			</Rectangle>
+        			<Image x:Name="lines" Height="7459" Canvas.Left="7388" Source="Images/SoccerFieldLines.png" Canvas.Top="256" Width="11184" IsManipulationEnabled="true" ManipulationStarting="field_ManipulationStarting" ManipulationDelta="field_ManipulationDelta" ManipulationInertiaStarting="field_InertiaStarting">
+        				<Image.RenderTransform>
+        					<TransformGroup>
+        						<ScaleTransform/>
+        						<SkewTransform/>
+        						<RotateTransform Angle="90"/>
+        						<TranslateTransform/>
+        					</TransformGroup>
+        				</Image.RenderTransform>
+        			</Image>
+        			<TelestrationWPF:DrawingCanvas x:Name="myCanvas" CanvasWidth="8000" CanvasHeight="11040" IsHitTestVisible="false" Canvas.Left="0" Canvas.Top="0" Margin="0" Height="11040" Width="8000" Visibility="Visible" />
+        			<Canvas x:Name="playerDots" Height="11040" Canvas.Left="0" Canvas.Top="0" Width="8000" RenderTransformOrigin="0,0"/>
+        			<local:FieldPlayer Canvas.Left="0" Canvas.Top="0" IsManipulationEnabled="True" RenderTransformOrigin="0.5,0.5">
+        				<local:FieldPlayer.RenderTransform>
+        					<TransformGroup>
+        						<ScaleTransform/>
+        						<SkewTransform/>
+        						<RotateTransform/>
+        						<TranslateTransform X="4000" Y="4000"/>
+        					</TransformGroup>
+        				</local:FieldPlayer.RenderTransform>
+        			</local:FieldPlayer>
+        			<local:FieldPlayer Canvas.Left="0" Canvas.Top="0" IsManipulationEnabled="True" RenderTransformOrigin="0.5,0.5">
+        				<local:FieldPlayer.RenderTransform>
+        					<TransformGroup>
+        						<ScaleTransform/>
+        						<SkewTransform/>
+        						<RotateTransform/>
+        						<TranslateTransform X="4000" Y="5520"/>
+        					</TransformGroup>
+        				</local:FieldPlayer.RenderTransform>
+        				<local:FieldPlayer.LayoutTransform>
+        					<TransformGroup>
+        						<ScaleTransform CenterX="0.5" CenterY="0.5"/>
+        						<SkewTransform CenterX="0.5" CenterY="0.5"/>
+        						<RotateTransform CenterX="0.5" CenterY="0.5"/>
+        						<TranslateTransform/>
+        					</TransformGroup>
+        				</local:FieldPlayer.LayoutTransform>
+        			</local:FieldPlayer>
+        		</Canvas>
+        	</Canvas>
+        </Canvas>
+        <local:ControlPanel Canvas.Left="1854" Canvas.Top="175"/>
+        <Canvas x:Name="rightMenu" Height="905" Canvas.Left="1526" Width="394" Canvas.Top="175" RenderTransformOrigin="0.5,0.5" IsEnabled="False" Visibility="Collapsed" IsHitTestVisible="False">
+            <Canvas.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform X="328"/>
+                </TransformGroup>
+            </Canvas.RenderTransform>
+            <Image x:Name="menuBarBG" Height="905" Source="Images/Reserves/menuBar.png" Stretch="Fill" Width="66"/>
+            <Rectangle x:Name="trayIn" Height="31" Canvas.Left="11.92" Stroke="Black" Canvas.Top="18.5" Width="43" StrokeThickness="0">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="Images/Reserves/btnCloseOn.png" Stretch="None"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle x:Name="trayOut" Height="31" Canvas.Left="11.92" Stroke="Black" Canvas.Top="18.5" Width="43" StrokeThickness="0">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="Images/Reserves/btnOpenOn.png" Stretch="None"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle x:Name="fieldOff" Height="31" Canvas.Left="11.92" Stroke="Black" Canvas.Top="68.5" Width="43" StrokeThickness="0" TouchDown="fieldActivate">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="Images/Reserves/btnFieldOff.png" Stretch="None"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle x:Name="fieldOn" Height="31" Canvas.Left="11.92" Stroke="Black" Canvas.Top="68.5" Width="43" StrokeThickness="0" TouchUp="fieldActivate">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="Images/Reserves/btnFieldOn.png" Stretch="None"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle x:Name="playerOff" Height="31" Canvas.Left="11.92" Stroke="Black" Canvas.Top="119" Width="43" StrokeThickness="0" TouchUp="playerActivate">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="Images/Reserves/btnPlayerOff.png" Stretch="None"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle x:Name="playerOn" Height="31" Canvas.Left="11.92" Stroke="Black" Canvas.Top="119" Width="43" StrokeThickness="0" TouchUp="playerActivate">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="Images/Reserves/btnPlayerOn.png" Stretch="None"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <TelestrationWPF:DynamicPalette x:Name="myPalette" Canvas.Left="0" Canvas.Top="853" IsHitTestVisible="True" Visibility="Visible" Panel.ZIndex="1001"/>
+        </Canvas>
+
+    </Canvas>
+</Window>

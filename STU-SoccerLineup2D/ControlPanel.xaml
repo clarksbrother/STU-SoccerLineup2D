@@ -1,0 +1,95 @@
+﻿<UserControl x:Class="STU_SoccerLineup2D.ControlPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:TelestrationWPF="clr-namespace:TelestrationWPF;assembly=TelestrationWPF"
+             mc:Ignorable="d" 
+             d:DesignHeight="910" d:DesignWidth="392">
+
+    <Canvas x:Name="controlPanelCanvas">
+
+        <Canvas x:Name="toolbar" Width="66" Height="910">
+            <Canvas.Background>
+                <ImageBrush ImageSource="Images/ControlPanel/menuBar2.png"/>
+            </Canvas.Background>
+            <Canvas x:Name="btnShowBench" Width="55" Height="45" Canvas.Left="4.667" Canvas.Top="11.333">
+                <Canvas.Background>
+                    <ImageBrush ImageSource="Images/ControlPanel/btnShowBench.png" Stretch="Uniform"/>
+                </Canvas.Background>
+            </Canvas>
+            <Canvas x:Name="btnHideBench" Width="55" Height="45" Canvas.Left="4.667" Canvas.Top="11.333" d:IsHidden="True">
+                <Canvas.Background>
+                    <ImageBrush ImageSource="Images/ControlPanel/btnHideBench.png" Stretch="Uniform"/>
+                </Canvas.Background>
+            </Canvas>
+            <Canvas x:Name="btnResetCards" Width="55" Height="45" Canvas.Left="4.666" Canvas.Top="64.331">
+                <Canvas.Background>
+                    <ImageBrush ImageSource="Images/ControlPanel/btnResetCards.png" Stretch="Uniform"/>
+                </Canvas.Background>
+            </Canvas>
+            <Canvas x:Name="btnShowHome" Width="55" Height="45" Canvas.Left="5.995" Canvas.Top="117.329">
+                <Canvas.Background>
+                    <ImageBrush ImageSource="Images/ControlPanel/btnHomeOn.png" Stretch="Uniform"/>
+                </Canvas.Background>
+            </Canvas>
+            <Canvas x:Name="btnShowVisitors" Width="55" Height="45" Canvas.Left="5.995" Canvas.Top="169.33">
+                <Canvas.Background>
+                    <ImageBrush ImageSource="Images/ControlPanel/btnVisitorOff.png" Stretch="Uniform"/>
+                </Canvas.Background>
+            </Canvas>
+            <Canvas x:Name="btnRotateField" Width="55" Height="45" Canvas.Left="5.995" Canvas.Top="223" TouchUp="rotateField_buttonUp">
+            	<Canvas.Background>
+            		<ImageBrush ImageSource="Images/ControlPanel/btnRotateField.png" Stretch="Uniform"/>
+            	</Canvas.Background>
+            </Canvas>
+
+            <TelestrationWPF:DynamicPalette x:Name="myPalette" Canvas.Left="4" Canvas.Top="854" IsHitTestVisible="True" Visibility="Visible" Panel.ZIndex="1000"/>
+        </Canvas>
+
+        <Canvas x:Name="bench" ClipToBounds="True" TouchDown="bench_TouchDown" TouchUp="bench_TouchUp" IsManipulationEnabled="True" ManipulationStarting="bench_ManipulationStarting" ManipulationDelta="bench_ManipulationDelta" Width="326" Height="845" Background="#1c1a1b" Canvas.Left="66.003" Canvas.Top="65.002"/>
+
+        <Canvas x:Name="visitorsBench" ClipToBounds="True" Visibility="Hidden" TouchDown="bench_TouchDown" TouchUp="bench_TouchUp" IsManipulationEnabled="True" ManipulationStarting="bench_ManipulationStarting" ManipulationDelta="bench_ManipulationDelta" Width="326" Height="845" Background="#1c1a1b" Canvas.Left="66.003" Canvas.Top="65.014" d:IsHidden="True"/>
+
+        <Canvas x:Name="btnHomeTeam" TouchDown="btnHomeTeam_TouchDown" Width="164" Height="66" Canvas.Left="65.994">
+            <Canvas.Background>
+                <ImageBrush ImageSource="Images/ControlPanel/btnTeamOn.png"/>
+            </Canvas.Background>
+            <Viewbox x:Name="homeTeamViewbox" HorizontalAlignment="Left" StretchDirection="DownOnly" Stretch="Fill" Height="66" Width="164">
+                <TextBlock x:Name="homeTeamText" TextAlignment="Center" TextWrapping="Wrap" Text="HOME" FontFamily="/STU-SoccerLineup2D;component/Fonts/#Touchscreen  Swiss721 BoldCondensed" FontSize="50" Width="155.191" Height="52">
+                    <TextBlock.Foreground>
+                        <SolidColorBrush Color="Black"/>
+                    </TextBlock.Foreground>
+                </TextBlock>
+            </Viewbox>
+        </Canvas>
+        <Canvas x:Name="btnAwayTeam" Width="164" Height="66" Canvas.Left="227.982">
+            <Canvas.Background>
+                <ImageBrush ImageSource="Images/ControlPanel/btnTeamOff.png"/>
+            </Canvas.Background>
+            <Viewbox x:Name="awayTeamViewbox" HorizontalAlignment="Left" StretchDirection="DownOnly" Stretch="Fill" Height="56" Canvas.Left="18.083" Canvas.Top="8" Width="128.667">
+                <TextBlock x:Name="awayTeamText" TextAlignment="Center" TextWrapping="Wrap" Text="VIS" FontFamily="/STU-SoccerLineup2D;component/Fonts/#Touchscreen  Swiss721 BoldCondensed" FontSize="50" Width="128.524">
+                    <TextBlock.Foreground>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FFE3E1E2" Offset="1"/>
+                            <GradientStop Color="White"/>
+                        </LinearGradientBrush>
+                    </TextBlock.Foreground>
+                </TextBlock>
+            </Viewbox>
+        </Canvas>
+        <Canvas x:Name="oneTeamBacking" Width="326" Height="66" Canvas.Left="66.003" Visibility="Hidden">
+            <Canvas.Background>
+                <ImageBrush ImageSource="Images/ControlPanel/btnFullTeamOn.png"/>
+            </Canvas.Background>
+            <Viewbox x:Name="oneTeamViewbox" HorizontalAlignment="Left" StretchDirection="DownOnly" Stretch="Fill" Height="66" Width="164" Canvas.Left="78">
+                <TextBlock x:Name="oneTeamText" TextAlignment="Center" TextWrapping="Wrap" Text="HOME" FontFamily="/STU-SoccerLineup2D;component/Fonts/#Touchscreen  Swiss721 BoldCondensed" FontSize="50" Width="155.191" Height="52">
+                    <TextBlock.Foreground>
+                        <SolidColorBrush Color="Black"/>
+                    </TextBlock.Foreground>
+                </TextBlock>
+            </Viewbox>
+        </Canvas>
+    </Canvas>
+
+</UserControl>
